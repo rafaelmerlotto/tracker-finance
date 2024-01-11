@@ -1,3 +1,4 @@
+import { expensesService, incomesService } from ".";
 
 
 export class AuthService  {
@@ -5,9 +6,11 @@ export class AuthService  {
     iToken;
    
 
-    constructor(url, message) {
+    constructor(url, message, ammountActual) {
         this.url = url
         this.message = message
+     
+        
 
     }
 
@@ -35,16 +38,34 @@ export class AuthService  {
     }
 
 
-    async registerUser(firstName, surName, email, password, birthDate) {
+    async registerUser(email, password, fullName) {
         const res = await fetch(`${this.url}/register`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(firstName, surName, email, password, birthDate)
+            body: JSON.stringify( email, password, fullName)
         })
         if (res.ok) {
             return await res.json();
+        }
+    }
+
+    async userAmmount(){
+        const res = await fetch(`${this.url}/ammount`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                authorization: this.iToken
+            }       
+        })
+        if (res.ok) {
+           const data = await res.json();
+         
+           const sum = incomesService.incomeActual - expensesService.expenseActual;
+           console.log(sum)
+          return   this.ammountActual = sum;
+          
         }
     }
 

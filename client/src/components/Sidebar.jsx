@@ -9,19 +9,24 @@ import Nav from './Nav';
 import Budget from './Budget';
 import Savings from '@mui/icons-material/Savings';
 import Transform from '@mui/icons-material/Transform';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Sidebar() {
 
+    let navigate = useNavigate()
+    const toExpenses = () => {
+        return navigate("/createExpenses");
+    }
 
 
     return (
         <div className='w-1/4 h-screen bg-neutral-800'>
              <Nav /> 
             <div className='w-full h-auto mt-8 flex justify-center flex-col' >
-                <Button component="label" style={{ margin: 10 }} size='\' variant="contained" startIcon={<AccountBalanceWalletIcon />}> Overview </Button>
-                <Button component="label" style={{ margin: 10 }} size='large' variant="contained" startIcon={<CurrencyExchangeIcon />}> Budgets </Button>
-                <Button component="label" style={{ margin: 10 }} size='large' variant="contained" startIcon={<MoneyOffIcon />}> Expenses </Button>
+                <Button component="label" style={{ margin: 10 }} size='\' variant="contained" onClick={() => { return navigate("/overview");}}  startIcon={<AccountBalanceWalletIcon />}> Overview </Button>
+                <Button component="label" style={{ margin: 10 }} size='large' variant="contained" onClick={() => { return navigate("/createIncome");}}  startIcon={<CurrencyExchangeIcon />}> Budgets </Button>
+                <Button component="label" style={{ margin: 10 }} size='large' variant="contained" onClick={() => { return navigate("/createExpenses");}} startIcon={<MoneyOffIcon />}> Expenses </Button>
                 <Button component="label" style={{ margin: 10 }} size='large' variant="contained" startIcon={<Savings />}> Savings </Button>
                 <Button component="label" style={{ margin: 10 }} size='large' variant="contained" startIcon={<Transform />}> Moviments </Button>
                 <Button component="label" style={{ margin: 10 }} size='large' variant="contained" startIcon={<SettingsIcon />}> Settings </Button>
