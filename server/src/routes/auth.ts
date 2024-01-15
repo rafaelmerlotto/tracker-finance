@@ -72,7 +72,6 @@ auth.post('/login', async (req: Request, res: Response) => {
 
 auth.post('/ammount', async (req: Request, res: Response) => {
     const { mainAccount } = req.body
-    console.log(mainAccount)
     const accessToken = req.headers.authorization
     const payload: JwtPayload | null = checkJwt(accessToken!);
     if (!payload) {
@@ -104,6 +103,35 @@ auth.post('/ammount', async (req: Request, res: Response) => {
         return res.status(404).send({ msg: "Cannot found income", valid: false })
     }
     return res.status(200).send({ mgs: "Ammount user found", ammount: ammountUser.mainAccount, valid: true })
+})
+
+
+auth.post('/getUsername', async (req: Request, res: Response) => {
+    const { fullName } = req.body
+    const accessToken = req.headers.authorization
+    const payload: JwtPayload | null = checkJwt(accessToken!);
+    if (!payload) {
+        return res.status(401).send({ msg: "Token not valid", valid: false });
+    }
+
+    const userId: string = payload.userId
+    const user: User | null = await prisma.user.findUnique({
+        where: {
+            id: userId,
+        }
+    })
+    if (!user) {
+        return res.status(401).send({ msg: "User not valid", valid: false });
+    }
+    const username: User | null = await prisma.user.findUnique({
+        where: {
+            id: user.id,
+        }
+    })
+    if (!username) {
+        return res.status(404).send({ msg: "Cannot found username", valid: false })
+    }
+    return res.status(200).send({ mgs: "Username found", username: user.fulName, valid: true })
 })
 
 

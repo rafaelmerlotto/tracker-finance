@@ -1,13 +1,18 @@
-import AccountBalanceWallet from '@mui/icons-material/AccountBalanceWallet'
 import React from 'react'
+import MainAccount from './MainAccount'
+import Expenses from './Expenses'
+import Income from './Income'
+import Savings from './Savings'
+
 
 export default function AccountBalance() {
   return (
-    <div className='w-full h-2/4 flex justify-center items-center flex-col'>
-      <div className=' w-4/5 h-4/5 bg-neutral-800 rounded-lg '>
-        <h1 className='text-xl text-center text-neutral-600'><AccountBalanceWallet/> Account Balance</h1>
-      
-      </div>
-    </div>
+    
+     <div className='w-1/3 h-screen flex-col '>
+      <MainAccount />
+      <Expenses />
+      <Income />
+      <Savings />
+ </div>
   )
 }

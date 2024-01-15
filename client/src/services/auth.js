@@ -1,16 +1,16 @@
 import { expensesService, incomesService } from ".";
 
 
-export class AuthService  {
+export class AuthService {
 
     iToken;
-   
+
 
     constructor(url, message, ammountActual) {
         this.url = url
         this.message = message
-     
-        
+
+
 
     }
 
@@ -44,29 +44,42 @@ export class AuthService  {
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify( email, password, fullName)
+            body: JSON.stringify(email, password, fullName)
         })
         if (res.ok) {
             return await res.json();
         }
     }
 
-    async userAmmount(){
+    async userAmmount() {
         const res = await fetch(`${this.url}/ammount`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
                 authorization: this.iToken
-            }       
+            }
         })
         if (res.ok) {
-           const data = await res.json();
-         
-           const sum = incomesService.incomeActual - expensesService.expenseActual;
-           console.log(sum)
-          return   this.ammountActual = sum;
-          
+            await res.json();
+            const sum = incomesService.incomeActual - expensesService.expenseActual;
+            return this.ammountActual = sum;
+
         }
     }
 
+
+    async username() {
+        const res = await fetch(`${this.url}/getUsername`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                authorization: this.iToken
+            }
+        })
+        if (res.ok) {
+           const data = await res.json();
+           return data.username
+
+        }
+    }
 }

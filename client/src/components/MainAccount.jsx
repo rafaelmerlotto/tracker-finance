@@ -1,22 +1,27 @@
 
 import AccountBalanceWallet from '@mui/icons-material/AccountBalanceWallet'
 import React, { useEffect, useState } from 'react'
-import { authService, expensesService, incomesService } from '../services';
+import { authService} from '../services';
+import { CircularProgress } from '@mui/material';
 
 
 export default function MainAccount() {
 
   const [ammount, setAmmount] = useState();
+  const [loading, setLoading] = useState(false);
 
 
   useEffect(() => {
     async function sumIcomesExpenses() {
       const res = await authService.userAmmount()
-     
-     return setAmmount(res)
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+      }, 800)
+      return setAmmount(res)
     }
     sumIcomesExpenses()
-  }, [ammount])
+  }, [])
 
 
 
@@ -25,7 +30,7 @@ export default function MainAccount() {
       <div className=' w-4/5 h-3/4 bg-neutral-800  rounded-lg' >
         <h1 className='text-xl text-center text-neutral-600'><AccountBalanceWallet /> Main account</h1>
         <div className='h-2/3 flex justify-center items-center'>
-          <h1 className='text-5xl text-center text-neutral-600' >€ {ammount}</h1>
+          <h1 className='text-5xl text-center text-neutral-600' >€ {loading ? <CircularProgress /> : ammount}</h1>
         </div>
 
       </div>

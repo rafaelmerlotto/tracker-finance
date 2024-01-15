@@ -64,7 +64,7 @@ income.get("/incomes/user", async(req:Request, res: Response) => {
         orderBy:{
           createdAt: 'desc'
         },
-        take:8
+        take:7
     })
     if(!income){
         return res.status(403).send({ msg: "Cannot found income", valid: false})
@@ -104,5 +104,61 @@ income.get("/getAmmount/", async (req:Request, res:Response) => {
         )))
     
 })
+
+income.get("/getIncomeId", async (req: Request, res: Response) => {
+
+  const accessToken = req.headers.authorization
+  const payload: JwtPayload | null = checkJwt(accessToken!);
+  if (!payload) {
+    return res.status(401).send({ msg: "Token not valid", valid: false });
+  }
+
+  const userId: string = payload.userId
+  const user: User | null = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    }
+  })
+  if (!user) {
+    return res.status(401).send({ msg: "User not valid", valid: false });
+  }
+  const income: Income[] | null = await prisma.income.findMany({
+    where: {
+      userId: user.id
+    }
+  })
+  if (!income) {
+    return res.status(403).send({ msg: "Cannot found income", valid: false })
+  }
+  return res.status(200).send(income.map((e) => {return  e.id}))
+})
+
+income.delete("/deleteIncome/:id", async (req: Request, res: Response) => {
+  const {id} = req.params
+    const accessToken = req.headers.authorization
+    const payload: JwtPayload | null = checkJwt(accessToken!);
+    if (!payload) {
+      return res.status(401).send({ msg: "Token not valid", valid: false });
+    }
+  
+    const userId: string = payload.userId
+    const user: User | null = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      }
+    })
+    if (!user) {
+      return res.status(401).send({ msg: "User not valid", valid: false });
+    }
+    const incomes: Income | null = await prisma.income.delete({
+      where: {
+        id: id
+      }
+    })
+    if (!incomes) {
+      return res.status(403).send({ msg: "Cannot delete income", valid: false })
+    }
+    return res.status(200).send({ msg: "Income deleted", income:income, valid: false })
+  })
 
 export {income}
