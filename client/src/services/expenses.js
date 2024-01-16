@@ -45,6 +45,21 @@ export class ExpensesService {
         return false
     }
 
+    async allExpenses() {
+        const res = await fetch(`${this.url}/allExpenses/user`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                authorization: authService.iToken
+            },
+        })
+        if (res.ok) {
+            const data = await res.json();
+            return data
+        }
+        return false
+    }
+
     async getExpenseId() {
         const res = await fetch(`${this.url}/getExpenseId`, {
             method: 'GET',

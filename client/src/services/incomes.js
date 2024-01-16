@@ -45,6 +45,22 @@ export class IncomesService {
         return false
     }
 
+    async allIncomes() {
+        const res = await fetch(`${this.url}/allIncomes/user`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                authorization: authService.iToken
+            },
+        })
+        if (res.ok) {
+            const data = await res.json();
+           
+            return data
+        }
+        return false
+    }
+
     async getIncomeId() {
         const res = await fetch(`${this.url}/getIncomeId`, {
             method: 'GET',

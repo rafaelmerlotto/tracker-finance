@@ -72,6 +72,37 @@ income.get("/incomes/user", async(req:Request, res: Response) => {
     return res.status(200).send(income)
 })
 
+
+income.get("/allIncomes/user", async(req:Request, res: Response) => {
+  const accessToken = req.headers.authorization
+  const payload: JwtPayload | null = checkJwt(accessToken!);
+  if (!payload) {
+    return res.status(401).send({ msg: "Token not valid", valid: false });
+  }
+
+  const userId: string = payload.userId
+  const user: User | null = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    }
+  })
+  if (!user) {
+    return res.status(401).send({ msg: "User not valid", valid: false });
+  }
+  const income: Income[] | null = await prisma.income.findMany({
+      where: {
+          userId: user.id
+      },
+      orderBy:{
+        createdAt: 'desc'
+      }
+  })
+  if(!income){
+      return res.status(403).send({ msg: "Cannot found income", valid: false})
+  }
+  return res.status(200).send(income)
+})
+
 income.get("/getAmmount/", async (req:Request, res:Response) => {
     
     const accessToken = req.headers.authorization

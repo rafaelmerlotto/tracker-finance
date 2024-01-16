@@ -16,19 +16,19 @@ import MainAccount from './MainAccount';
 import Expenses from './Expenses';
 import Income from './Income';
 import Savings from './Savings';
-import AccountBalance from './AccountBalance';
 
 export default function CreateExpenses() {
 
     const [loading, setLoading] = useState(false);
  const { register, handleSubmit } = useForm();
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (name, ammount) => {
         setLoading(true)
+        console.log(ammount)
         setTimeout(() => {
             setLoading(false)
         }, 1000)
-        return await expensesService.createExpenses(data)
+        return await expensesService.createExpenses(name, ammount)
     }
 
 
@@ -36,8 +36,8 @@ export default function CreateExpenses() {
         <div className='flex' >
             <Sidebar />
 
-            <>
-                <div className='w-2/4 h-screen flex items-center justify-center bg-neutral-900'>
+             <div className='w-4/5 h-screen flex items-center justify-center'>
+                <div className='w-3/4 h-screen flex items-center justify-center bg-neutral-900'>
                    
                     <form onSubmit={handleSubmit(onSubmit)} class="bg-neutral-800 w-4/5 h-4/5 flex flex-col items-center justify-center gap-2.5 rounded-lg">
                        <h1 className='text-5xl pb-10 text-neutral-700'>Expense</h1>
@@ -76,7 +76,10 @@ export default function CreateExpenses() {
                 </div>
                     :
                     <div className='w-1/4 h-screen flex-col bg-neutral-900'>
-                       <AccountBalance/>
+                        <MainAccount />
+                        <Expenses />
+                        <Income />
+                        <Savings />
                     </div>
 
                 }
@@ -84,7 +87,7 @@ export default function CreateExpenses() {
 
 
 
-            </>
+            </div>
 
 
 

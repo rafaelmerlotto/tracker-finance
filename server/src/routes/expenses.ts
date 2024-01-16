@@ -100,6 +100,37 @@ expenses.get("/getExpenses/", async (req: Request, res: Response) => {
 })
 
 
+expenses.get("/allExpenses/user", async (req: Request, res: Response) => {
+  const accessToken = req.headers.authorization
+  const payload: JwtPayload | null = checkJwt(accessToken!);
+  if (!payload) {
+    return res.status(401).send({ msg: "Token not valid", valid: false });
+  }
+
+  const userId: string = payload.userId
+  const user: User | null = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    }
+  })
+  if (!user) {
+    return res.status(401).send({ msg: "User not valid", valid: false });
+  }
+  const expenses: Expenses[] | null = await prisma.expenses.findMany({
+    where: {
+      userId: user.id
+    },
+    orderBy: {
+      createdAt: 'desc'
+    }
+  })
+  if (!expenses) {
+    return res.status(403).send({ msg: "Cannot found income", valid: false })
+  }
+  return res.status(200).send(expenses)
+})
+
+
 expenses.get("/getExpenseId", async (req: Request, res: Response) => {
 
   const accessToken = req.headers.authorization

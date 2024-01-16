@@ -17,12 +17,7 @@ export default function Overview() {
   return (
     <div className='flex'>
       <Sidebar />
-      {loading ?
-        <Main /> :
-        <div className='h-screen w-3/4 flex items-center justify-center bg-neutral-900'>
-          <CircularProgress />
-        </div>
-      }
+        <Main />    
     </div>
   )
 }

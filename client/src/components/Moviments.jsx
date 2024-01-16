@@ -1,12 +1,15 @@
 import React from 'react'
-import RecentIncomes from './RecentIncomes'
-import RecentExpenses from './RecentExpenses'
+import Sidebar from './Sidebar'
+import AllMoviments from './AllMoviments';
+
+
 
 export default function Moviments() {
     return (
-            <div className='w-2/3 h-screen'>
+        <div className='flex'>
+            <Sidebar />
+            <AllMoviments />
+        </div>
 
-            </div>
-      
     )
 }

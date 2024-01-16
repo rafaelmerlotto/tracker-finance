@@ -6,6 +6,7 @@ import { useAuth } from "./auth/auth";
 import CreateExpenses from "./components/CreateExpenses";
 import CreateIncome from "./components/CreateIncome";
 import RecentExpenses from "./components/RecentExpenses";
+import Moviments from "./components/Moviments";
 
 export default function App() {
 
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/overview" element={<PrivateRoute><Overview/> </PrivateRoute>} /> 
           <Route path="/createExpenses" element={<PrivateRoute><CreateExpenses/> </PrivateRoute>}/> 
           <Route path="/createIncome" element={<PrivateRoute><CreateIncome/> </PrivateRoute>}/> 
+          <Route path="/moviments" element={<PrivateRoute><Moviments/> </PrivateRoute>}/> 
           <Route path="/" element={<Login/>} /> 
           <Route path="/register" element={<Register/>} /> 
         </Routes>

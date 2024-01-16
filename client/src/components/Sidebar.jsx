@@ -17,18 +17,18 @@ export default function Sidebar() {
     let navigate = useNavigate()
 
     return (
-        <div className='w-1/4 h-screen bg-neutral-800'>
-             <Nav /> 
+        <div className='w-1/5 h-screen bg-neutral-800'>
+            <Nav />
             <div className='w-full h-auto mt-8 flex justify-center flex-col' >
-                <Button component="label" style={{ margin: 10 }} size='large' variant="contained" onClick={() => { return navigate("/overview");}}  startIcon={<AccountBalanceWalletIcon />}> Overview </Button>
-                <Button component="label" style={{ margin: 10 }} size='large' variant="contained" onClick={() => { return navigate("/createIncome");}}  startIcon={<CurrencyExchangeIcon />}> Incomes </Button>
-                <Button component="label" style={{ margin: 10 }} size='large' variant="contained"  onClick={() => { return navigate("/createExpenses");}} startIcon={<MoneyOffIcon />}> Expenses </Button>
+                <Button component="label" style={{ margin: 10 }} size='large' variant="contained" onClick={() => { return navigate("/overview"); }} startIcon={<AccountBalanceWalletIcon />}> Overview </Button>
+                <Button component="label" style={{ margin: 10 }} size='large' variant="contained" onClick={() => { return navigate("/createIncome"); }} startIcon={<CurrencyExchangeIcon />}> Incomes </Button>
+                <Button component="label" style={{ margin: 10 }} size='large' variant="contained" onClick={() => { return navigate("/createExpenses"); }} startIcon={<MoneyOffIcon />}> Expenses </Button>
                 <Button component="label" style={{ margin: 10 }} size='large' variant="contained" startIcon={<Savings />}> Savings </Button>
-                <Button component="label" style={{ margin: 10 }} size='large' variant="contained" startIcon={<Transform />}> Moviments </Button>
+                <Button component="label" style={{ margin: 10 }} size='large' variant="contained" onClick={() => { return navigate("/moviments"); }} startIcon={<Transform />}> Moviments </Button>
                 <Button component="label" style={{ margin: 10 }} size='large' variant="contained" startIcon={<SettingsIcon />}> Settings </Button>
-<Logout/>
+                <Logout />
             </div>
-           
+
 
         </div>
     )
