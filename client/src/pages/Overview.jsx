@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Sidebar from '../components/Sidebar'
 import Main from '../components/Main'
-import { CircularProgress } from '@mui/material';
+import { authService } from '../services'
+
 
 export default function Overview() {
-  const [loading, setLoading] = useState(false);
 
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(true)
-    }, 1000)
-  })
 
+  // const [loading, setLoading] = useState(false);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(true)
+  //   }, 1000)
+  // })
+
+  console.log(authService.currencyActual)
 
   return (
-    <div className='flex'>
+    <div className='flex '>
       <Sidebar />
         <Main />    
     </div>

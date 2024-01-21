@@ -11,7 +11,6 @@ export default function Main() {
 
 
     return (
-
             <div className='w-4/5 h-screen flex  bg-neutral-900' >
                 <div className='w-3/4 h-screen'>
                     <RecentIncomes />
@@ -24,8 +23,6 @@ export default function Main() {
                     <Savings />
                 </div>
             </div>
-      
-
     )
 }
 

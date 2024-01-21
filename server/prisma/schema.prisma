@@ -15,10 +15,11 @@ model User {
   email       String     @unique
   password    String
   fulName     String
-  mainAccount Int?       
+  mainAccount Int?
   jwt         JwtKey[]
-  income      Income[]
+  incomes     Incomes[]
   expenses    Expenses[]
+  savings     Savings[]
 }
 
 model JwtKey {
@@ -32,14 +33,14 @@ model JwtKey {
   @@unique([id, userId])
 }
 
-model Income {
+model Incomes {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   createdAt DateTime @default(now())
   status    String   @default("Income")
   ammount   Int
   user      User     @relation(fields: [userId], references: [id])
-  userId    String    @db.ObjectId
+  userId    String   @db.ObjectId
 
   @@unique([id, userId])
 }
@@ -48,10 +49,21 @@ model Expenses {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   createdAt DateTime @default(now())
-  status    String   @default("Expenses")
+  status    String   @default("Expense")
   ammount   Int
   user      User     @relation(fields: [userId], references: [id])
-  userId    String    @db.ObjectId
+  userId    String   @db.ObjectId
+
+  @@unique([id, userId])
+}
+
+model Savings {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  status    String   @default("Saving")
+  ammount   Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @db.ObjectId
 
   @@unique([id, userId])
 }

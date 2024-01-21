@@ -1,12 +1,12 @@
 import express, { Request, Response, Router } from 'express'
 import { JwtKey, User } from '@prisma/client'
 import { getToken } from '../utils/key';
-import bcrypt, { compareSync, hashSync } from 'bcrypt'
+import bcrypt, { compareSync } from 'bcrypt'
 import dotenv from "dotenv"
 import { prisma } from '../utils/prisma';
 import { JwtPayload } from 'jsonwebtoken';
 import { checkJwt } from '../utils/checkJwt';
-import { body, header } from 'express-validator';
+
 
 dotenv.config();
 const auth: Router = express.Router()
@@ -46,8 +46,6 @@ auth.post('/register', async (req: Request, res: Response) => {
             email: email,
             password: passwordHash,
             fulName: fullName
-
-
         }
     })
     if (!user) {
@@ -96,7 +94,8 @@ auth.post('/ammount', async (req: Request, res: Response) => {
         },
         include:{
             expenses: true,
-            income:true
+            incomes:true,
+            savings: true
         }
     })
     if (!ammountUser) {
@@ -133,6 +132,8 @@ auth.post('/getUsername', async (req: Request, res: Response) => {
     }
     return res.status(200).send({ mgs: "Username found", username: user.fulName, valid: true })
 })
+
+
 
 
 export { auth }

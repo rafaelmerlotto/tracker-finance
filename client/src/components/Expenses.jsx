@@ -12,7 +12,6 @@ export default function Expenses() {
   const currency = useCurrency();
 
 
-
   useEffect(() => {
     async function expenses() {
       const res = await expensesService.getExpenses()
@@ -37,7 +36,7 @@ export default function Expenses() {
       <div className=' w-4/5 h-3/4 bg-neutral-800  rounded-lg' >
         <h1 className='text-xl text-center text-neutral-600'> <MoneyOff /> Expenses</h1>
         <div className='h-2/3 flex justify-center items-center'>     
-            <h1 className='text-5xl text-center text-red-600'>{loading ? <CircularProgress /> : currency.currency.format(actual)} </h1>
+            <h1 className='text-5xl text-center text-red-600'>{loading ? <CircularProgress /> : currency.currencyUSD.format(actual)} </h1>
         </div>
       </div>
     </div>

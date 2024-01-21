@@ -1,4 +1,4 @@
-import { expensesService, incomesService } from ".";
+import { expensesService, incomesService, savingsService } from ".";
 
 
 export class AuthService {
@@ -6,13 +6,13 @@ export class AuthService {
     iToken;
 
 
-    constructor(url, message, ammountActual) {
+    constructor(url, message, currencyActual) {
         this.url = url
         this.message = message
-
-
-
+        this.currencyActual = currencyActual 
     }
+
+
 
     get token() {
         return this.iToken
@@ -62,8 +62,8 @@ export class AuthService {
         if (res.ok) {
             await res.json();
             const sum = incomesService.incomeActual - expensesService.expenseActual;
-            return this.ammountActual = sum;
-
+            this.ammountActual = sum;
+            return this.ammountActual - savingsService.savingActual;
         }
     }
 
@@ -77,9 +77,11 @@ export class AuthService {
             }
         })
         if (res.ok) {
-           const data = await res.json();
-           return data.username
+            const data = await res.json();
+            return data.username
 
         }
     }
+
+
 }

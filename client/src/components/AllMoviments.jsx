@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { expensesService, incomesService } from '../services'
+import { authService, expensesService, incomesService } from '../services'
 import { CircularProgress } from '@mui/material'
-import TransformIcon from '@mui/icons-material/Transform';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -10,6 +9,9 @@ import Expenses from './Expenses';
 import Income from './Income';
 import Savings from './Savings';
 import { useCurrency } from '../context/currencyContext';
+import { authContext } from '../auth/auth';
+
+
 
 export default function AllMoviments() {
 
@@ -24,6 +26,7 @@ export default function AllMoviments() {
         const res = await expensesService.allExpenses();
         return setAllExpenses(res)
     }
+
     async function getAllIncomes() {
         const res = await incomesService.allIncomes();
         return setAllIncomes(res)
@@ -32,11 +35,13 @@ export default function AllMoviments() {
     useEffect(() => {
         getAllExpenses()
         getAllIncomes()
+
     }, [])
 
     async function deleteExpense() {
         return await expensesService.deleteExpense(expensesService.iExpenseId);
     }
+
     async function deleteIncome() {
         return await incomesService.deleteIncome(incomesService.iIncomeId);
     }
@@ -65,13 +70,12 @@ export default function AllMoviments() {
         }, 1000)
     }
 
-   
-   
+
+
 
     return (
         <div className='w-4/5 h-screen flex-row flex'>
             <div className='w-3/4 h-full flex justify-center items-center gap-5 bg-neutral-900'>
-
                 {isIncomesLoading ?
                     <div className=' w-2/4 ml-5 h-[95%] flex items-center justify-center bg-neutral-800 rounded-lg overflow-y-auto overflow-x-hidden'>
                         < CircularProgress />
@@ -96,8 +100,7 @@ export default function AllMoviments() {
                                                 hour: "numeric",
                                                 minute: "numeric"
                                             })}</td>
-
-                                        <td className='text-neutral-600'>{currency.currency.format(e.ammount)}</td>
+                                        <td className='text-neutral-600'>{currency.currencyUSD.format(e.ammount)}</td>
                                         <button type='submit' key={e.id} value={e.id} onClick={(e) => handleDeleteIncome(e.currentTarget.value)} >
                                             <DeleteIcon className='text-neutral-600 cursor-pointer hover:text-red-500' /></button>
                                     </tr>
@@ -106,9 +109,6 @@ export default function AllMoviments() {
                         </table >
                     </div >
                 }
-
-
-
                 {isExpensesLoading ?
                     <div className='w-2/4 h-[95%] bg-neutral-800 rounded-lg flex items-center justify-center overflow-y-auto overflow-x-hidden'>
                         < CircularProgress />
@@ -133,8 +133,7 @@ export default function AllMoviments() {
                                                 hour: "numeric",
                                                 minute: "numeric"
                                             })}</td>
-
-                                        <td className='text-neutral-600'>{currency.currency.format(e.ammount)}</td>
+                                        <td className='text-neutral-600'>{currency.currencyUSD.format(e.ammount)}</td>
                                         <button type='submit' key={e.id} value={e.id} onClick={(e) => handleDeleteExpense(e.currentTarget.value)} >
                                             <DeleteIcon className='text-neutral-600 cursor-pointer hover:text-red-500' /></button>
                                     </tr>
@@ -143,10 +142,7 @@ export default function AllMoviments() {
                         </table >
                     </div >
                 }
-
-
             </div>
-
             <React.Fragment>
                 {isLoading ?
                     <div className='w-1/4 h-full bg-neutral-900 flex justify-center items-center'>
@@ -161,7 +157,6 @@ export default function AllMoviments() {
                     </div>
                 }
             </React.Fragment>
-
         </div>
     )
 }

@@ -1,27 +1,28 @@
 import { authService } from ".";
 
 
-export class IncomesService {
+export class SavingsService {
 
-    iIncomeId;
 
-    constructor(url, incomeActual) {
-        this.url = url;
-        this.incomeActual = incomeActual
+    iSavingId
+
+    constructor(url, savingActual){
+        this.url = url
+        this.savingActual = savingActual
     }
 
-    get incomeId(){
-        return this.iIncomeId
+    get savingId(){
+        return this.iSavingId
     }
 
-    async createIncomes(name, ammount) {
+    async createSavings( ammount) {
         const res = await fetch(`${this.url}/create`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
                 authorization: authService.iToken
             },
-            body: JSON.stringify(name, ammount)
+            body: JSON.stringify( ammount)
         })
         if (res.ok) {
             return await res.json();
@@ -29,8 +30,8 @@ export class IncomesService {
         return false
     }
 
-    async incomes() {
-        const res = await fetch(`${this.url}/incomes/user`, {
+    async allSavings() {
+        const res = await fetch(`${this.url}/allSavings/user`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -43,8 +44,8 @@ export class IncomesService {
         return false
     }
 
-    async allIncomes() {
-        const res = await fetch(`${this.url}/allIncomes/user`, {
+    async getSavings() {
+        const res = await fetch(`${this.url}/getSavings`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -57,8 +58,8 @@ export class IncomesService {
         return false
     }
 
-    async getIncomeId() {
-        const res = await fetch(`${this.url}/getIncomeId`, {
+    async getSavingId() {
+        const res = await fetch(`${this.url}/getSavingId`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -71,22 +72,9 @@ export class IncomesService {
         return false
     }
 
-    async getIncomes() {
-        const res = await fetch(`${this.url}/getAmmount`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                authorization: authService.iToken
-            },
-        })
-        if (res.ok) {
-            return  await res.json();  
-        }
-        return false
-    }
 
-    async deleteIncome(id) {
-        const res = await fetch(`${this.url}/deleteIncome/${id}`, {
+    async deleteSaving(id) {
+        const res = await fetch(`${this.url}/deleteSaving/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
@@ -98,5 +86,4 @@ export class IncomesService {
         }
         return false
     }
-
 }
