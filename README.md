@@ -1,4 +1,4 @@
-![picture project]
+![picture project](../tracker-finance/client/src/assets/images/overview.png)
 
 # Tracker finance
 App Tracker Finance is a application designed to empower users in managing and tracking their finances.
