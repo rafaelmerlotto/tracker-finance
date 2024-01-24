@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../components/Sidebar'
 import Main from '../components/Main'
 import { authService } from '../services'
@@ -15,7 +15,8 @@ export default function Overview() {
   //   }, 1000)
   // })
 
-  console.log(authService.currencyActual)
+  
+
 
   return (
     <div className='flex '>

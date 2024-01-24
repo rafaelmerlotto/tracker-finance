@@ -4,13 +4,13 @@ import { authService, incomesService } from '../services';
 import { useCurrency } from '../context/currencyContext';
 
 
+
 export default function RecentIncomes() {
 
-    const [incomes, setIncomes] = useState([]);
-  const [isCurrency, setIscurrency] = useState()
-  const [getCurrency, setGetcurrency] = useState(0)
-
     const currency = useCurrency();
+    const [incomes, setIncomes] = useState([]);
+    const [isCurrency, setIscurrency] = useState()
+    
 
     useEffect(() => {
         async function getIncomes() {
@@ -18,18 +18,23 @@ export default function RecentIncomes() {
             return setIncomes(res);
         }
         getIncomes();
-
+       
         if (authService.currencyActual === "USD") {
-            return setIscurrency(currency.currencyUSD.format(getCurrency))
-          }
-          if (authService.currencyActual === "EUR") {
-            return setIscurrency(currency.currencyEUR.format(getCurrency))
-          }
-          if (authService.currencyActual === "BRL") {
-            return setIscurrency(currency.currencyBRL.format(getCurrency))
-          }
-      
-    }, [getCurrency])
+            return setIscurrency(currency.currencyUSD)
+        }
+        if (authService.currencyActual === "EUR") {
+            return setIscurrency(currency.currencyEUR)
+        }
+        if (authService.currencyActual === "BRL") {
+            return setIscurrency(currency.currencyBRL)
+        }
+        if (authService.currencyActual === "INR") {
+            return setIscurrency(currency.currencyINR)
+        }
+        if (authService.currencyActual === "GBP") {
+            return setIscurrency(currency.currencyGBP)
+        }
+    }, [isCurrency])
 
 
 
@@ -44,8 +49,9 @@ export default function RecentIncomes() {
                         <th className='text-start'>Ammount</th>
                     </tr>
                     {incomes.map((e) => (
-                        
+
                         <tr >
+
                             <td className='text-neutral-600'>{e.name}</td>
                             <td className='text-neutral-600'>{new Date(e.createdAt).toLocaleDateString("pt-BR")}&nbsp;
                                 {new Date(e.createdAt).toLocaleTimeString("pt-BR", {
@@ -54,11 +60,11 @@ export default function RecentIncomes() {
                                     minute: "numeric",
 
                                 })}</td>
-                            <td hidden className='text-neutral-600'>{setGetcurrency(e.ammount)}</td>
-                            <td className='text-neutral-600'>{isCurrency}</td>
+                                <td className='text-neutral-600'>{isCurrency.format(e.ammount)} </td>
                         </tr>
                     ))}
                 </table>
+              
             </div>
         </div>
     )

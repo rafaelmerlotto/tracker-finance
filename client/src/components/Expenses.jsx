@@ -1,33 +1,55 @@
 import MoneyOff from '@mui/icons-material/MoneyOff'
 import React, { useState, useEffect } from 'react'
 import lodash from 'lodash'
-import { expensesService } from '../services';
+import { authService, expensesService } from '../services';
 import { CircularProgress } from '@mui/material';
 import { useCurrency } from '../context/currencyContext';
 
+
 export default function Expenses() {
 
-  const [expenses, setExpenses] = useState([]);
-  const [loading, setLoading] = useState(false);
   const currency = useCurrency();
+  const [loading, setLoading] = useState(false);
+  const [isCurrency, setIscurrency] = useState()
+  const [ammount, setAmmount] = useState(0);
 
 
+
+
+
+  
   useEffect(() => {
+
     async function expenses() {
       const res = await expensesService.getExpenses()
       setLoading(true)
       setTimeout(() => {
         setLoading(false)
       }, 1000)
-      setExpenses(res)
+      const sum = lodash.sum(res)
+   expensesService.expenseActual = sum 
+      setAmmount(sum)
     }
     expenses();
 
-  }, [])
 
+    if (authService.currencyActual === "USD") {
+      return setIscurrency(currency.currencyUSD.format(ammount))
+    }
+    if (authService.currencyActual === "EUR") {
+      return setIscurrency(currency.currencyEUR.format(ammount))
+    }
+    if (authService.currencyActual === "BRL") {
+      return setIscurrency(currency.currencyBRL.format(ammount))
+    }
+    if (authService.currencyActual === "INR") {
+      return setIscurrency(currency.currencyINR.format(ammount))
+  }
+  if (authService.currencyActual === "GBP") {
+    return setIscurrency(currency.currencyGBP.format(ammount))
+}
+  }, [ammount])
 
-  const sum = lodash.sum(expenses)
-  const actual = expensesService.expenseActual = sum;
 
 
 
@@ -35,8 +57,8 @@ export default function Expenses() {
     <div className='w-full h-1/4 flex items-center justify-center'>
       <div className=' w-4/5 h-3/4 bg-neutral-800  rounded-lg' >
         <h1 className='text-xl text-center text-neutral-600'> <MoneyOff /> Expenses</h1>
-        <div className='h-2/3 flex justify-center items-center'>     
-            <h1 className='text-5xl text-center text-red-600'>{loading ? <CircularProgress /> : currency.currencyUSD.format(actual)} </h1>
+        <div className='h-2/3 flex justify-center items-center'>
+          <h1 className='text-4xl text-center text-red-600'>{loading ? <CircularProgress /> : isCurrency} </h1>
         </div>
       </div>
     </div>

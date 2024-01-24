@@ -13,8 +13,9 @@ export default function Nav() {
   getUserName()
 
   return (
-    <nav className='w-full flex justify-center items-center gap-4 bg-neutral-800' >
-      <Avatar src="/broken-image.jpg" style={{ marginTop: 10 }} /> <p className='text-xl text-center text-neutral-600'>{username}</p>
-    </nav>
+    < >
+      <Avatar className='w-1/2' style={{width: 30, height:30}} src="/broken-image.jpg"/>
+       <p className='w-1/2 text-[18px] text-center text-neutral-600'>{username}</p>
+    </>
   )
 }

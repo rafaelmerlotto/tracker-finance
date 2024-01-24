@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { savingsService } from '../services';
+import { authService, savingsService } from '../services';
 import { Box, Button, TextField, CircularProgress } from '@mui/material'
 import Sidebar from './Sidebar';
 import MainAccount from './MainAccount';
@@ -14,12 +14,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ManagerSavings() {
 
+
+    const currency = useCurrency()
     const { register, handleSubmit } = useForm();
     const [allSavings, setAllSavings] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [isSavingsLoading, setIsSavingsLoading] = useState(false)
+    const [isCurrency, setIscurrency] = useState()
 
-    const currency = useCurrency()
 
     const onSubmit = async (data) => {
         setIsLoading(true)
@@ -36,8 +38,27 @@ export default function ManagerSavings() {
         const res = await savingsService.allSavings();
         return setAllSavings(res)
     }
-    getAllSavings()
 
+
+    useEffect(() => {
+        getAllSavings()
+
+        if (authService.currencyActual === "USD") {
+            return setIscurrency(currency.currencyUSD)
+        }
+        if (authService.currencyActual === "EUR") {
+            return setIscurrency(currency.currencyEUR)
+        }
+        if (authService.currencyActual === "BRL") {
+            return setIscurrency(currency.currencyBRL)
+        }
+        if (authService.currencyActual === "INR") {
+            return setIscurrency(currency.currencyINR)
+        }
+        if (authService.currencyActual === "GBP") {
+            return setIscurrency(currency.currencyGBP)
+        }
+    })
 
     async function deleteSaving() {
         return await savingsService.deleteSaving(savingsService.iSavingId);
@@ -86,7 +107,7 @@ export default function ManagerSavings() {
                                                         hour: "numeric",
                                                         minute: "numeric"
                                                     })}</td>
-                                                <td className='text-neutral-600'>{currency.currencyUSD.format(e.ammount)}</td>
+                                                <td className='text-neutral-600'>{isCurrency.format(e.ammount)}</td>
                                                 <button type='submit' key={e.id} value={e.id} onClick={(e) => handleDelete(e.currentTarget.value)} >
                                                     <DeleteIcon className='text-neutral-600 cursor-pointer hover:text-red-500' /></button>
                                             </tr>
@@ -114,8 +135,8 @@ export default function ManagerSavings() {
                     :
                     <div className='w-1/4 h-screen flex-col bg-neutral-900'>
                         <MainAccount />
-                        <Expenses />
                         <Income />
+                        <Expenses />
                         <Savings />
                     </div>
                 }

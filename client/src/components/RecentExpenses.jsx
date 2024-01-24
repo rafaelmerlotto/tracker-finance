@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TransformIcon from '@mui/icons-material/Transform';
-import { expensesService } from '../services';
+import { authService, expensesService } from '../services';
 import { useCurrency } from '../context/currencyContext';
 
 
@@ -8,22 +8,38 @@ import { useCurrency } from '../context/currencyContext';
 export default function RecentExpenses() {
 
     const [expenses, setExpenses] = useState([]);
+    const [isCurrency, setIscurrency] = useState()
     const currency = useCurrency();
 
-    async function getExpenses() {
-        const res = await expensesService.expenses();
-        return setExpenses(res);
-    }
 
     useEffect(() => {
+        async function getExpenses() {
+            const res = await expensesService.expenses();
+            return setExpenses(res);
+        }
         getExpenses();
-    }, [])
+       
+        if (authService.currencyActual === "USD") {
+            return setIscurrency(currency.currencyUSD)
+        }
+        if (authService.currencyActual === "EUR") {
+            return setIscurrency(currency.currencyEUR)
+        }
+        if (authService.currencyActual === "BRL") {
+            return setIscurrency(currency.currencyBRL)
+        }
+        if (authService.currencyActual === "INR") {
+            return setIscurrency(currency.currencyINR)
+        }
+        if (authService.currencyActual === "GBP") {
+            return setIscurrency(currency.currencyGBP)
+        }
+    }, [isCurrency])
 
 
 
     return (
         <div className='w-full h-2/4 flex justify-center items-center flex-col'>
-            <React.Fragment>
                 <div className=' w-4/5 h-4/5 bg-neutral-800  rounded-lg '>
                     <h1 className='text-xl text-center text-neutral-600'><TransformIcon /> Recent expenses</h1>
                     <table className='w-full m-3  text-lg'>
@@ -32,8 +48,7 @@ export default function RecentExpenses() {
                             <th className='text-start'>Date</th>
                             <th className='text-start'>Ammount</th>
                         </tr>
-                        {expenses.map((e) => (
-                            <React.Fragment>
+                        {expenses.map((e) => (  
                                 <tr>
                                     <td className='text-neutral-600'>{e.name}</td>
                                     <td className='text-neutral-600'>{new Date(e.createdAt).toLocaleDateString("pt-BR")}&nbsp;
@@ -43,13 +58,11 @@ export default function RecentExpenses() {
                                             minute: "numeric"
                                         })}</td>
 
-                                    <td className='text-neutral-600'>{currency.currencyUSD.format(e.ammount)}</td>
+                                    <td className='text-neutral-600'>{isCurrency.format(e.ammount)}</td>
                                 </tr>
-                            </React.Fragment>
                         ))}
                     </table >
                 </div >
-            </React.Fragment>
         </div >
     )
 }

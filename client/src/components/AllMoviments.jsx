@@ -15,13 +15,15 @@ import { authContext } from '../auth/auth';
 
 export default function AllMoviments() {
 
+    const currency = useCurrency()
     const [allExpenses, setAllExpenses] = useState([])
     const [allIncomes, setAllIncomes] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [isExpensesLoading, setIsExpensesLoading] = useState(false)
     const [isIncomesLoading, setIsIncomesLoading] = useState(false)
-    const currency = useCurrency()
+    const [isCurrency, setIscurrency] = useState()
 
+    
     async function getAllExpenses() {
         const res = await expensesService.allExpenses();
         return setAllExpenses(res)
@@ -36,7 +38,22 @@ export default function AllMoviments() {
         getAllExpenses()
         getAllIncomes()
 
-    }, [])
+        if (authService.currencyActual === "USD") {
+            return setIscurrency(currency.currencyUSD)
+        }
+        if (authService.currencyActual === "EUR") {
+            return setIscurrency(currency.currencyEUR)
+        }
+        if (authService.currencyActual === "BRL") {
+            return setIscurrency(currency.currencyBRL)
+        }
+        if (authService.currencyActual === "INR") {
+            return setIscurrency(currency.currencyINR)
+        }
+        if (authService.currencyActual === "GBP") {
+            return setIscurrency(currency.currencyGBP)
+        }
+    }, [isCurrency])
 
     async function deleteExpense() {
         return await expensesService.deleteExpense(expensesService.iExpenseId);
@@ -70,7 +87,7 @@ export default function AllMoviments() {
         }, 1000)
     }
 
-
+  
 
 
     return (
@@ -100,7 +117,7 @@ export default function AllMoviments() {
                                                 hour: "numeric",
                                                 minute: "numeric"
                                             })}</td>
-                                        <td className='text-neutral-600'>{currency.currencyUSD.format(e.ammount)}</td>
+                                        <td className='text-neutral-600'>{isCurrency.format(e.ammount)}</td>
                                         <button type='submit' key={e.id} value={e.id} onClick={(e) => handleDeleteIncome(e.currentTarget.value)} >
                                             <DeleteIcon className='text-neutral-600 cursor-pointer hover:text-red-500' /></button>
                                     </tr>
@@ -133,7 +150,7 @@ export default function AllMoviments() {
                                                 hour: "numeric",
                                                 minute: "numeric"
                                             })}</td>
-                                        <td className='text-neutral-600'>{currency.currencyUSD.format(e.ammount)}</td>
+                                        <td className='text-neutral-600'>{isCurrency.format(e.ammount)}</td>
                                         <button type='submit' key={e.id} value={e.id} onClick={(e) => handleDeleteExpense(e.currentTarget.value)} >
                                             <DeleteIcon className='text-neutral-600 cursor-pointer hover:text-red-500' /></button>
                                     </tr>
@@ -151,8 +168,8 @@ export default function AllMoviments() {
                     :
                     <div className='w-1/4 h-full flex flex-col justify-center items-center bg-neutral-900'>
                         <MainAccount />
-                        <Expenses />
                         <Income />
+                        <Expenses />
                         <Savings />
                     </div>
                 }

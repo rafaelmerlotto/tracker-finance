@@ -14,7 +14,7 @@ export default function MainAccount() {
   const [loading, setLoading] = useState(false);
   const [isCurrency, setIscurrency] = useState()
 
-  console.log(authService.currencyActual)
+
 
   useEffect(() => {
     async function sumIncomesExpenses() {
@@ -25,7 +25,8 @@ export default function MainAccount() {
       }, 800)
       return setAmmount(res)
     }
-   sumIncomesExpenses()
+    sumIncomesExpenses()
+
 
     if (authService.currencyActual === "USD") {
       return setIscurrency(currency.currencyUSD.format(ammount))
@@ -36,12 +37,13 @@ export default function MainAccount() {
     if (authService.currencyActual === "BRL") {
       return setIscurrency(currency.currencyBRL.format(ammount))
     }
-
- 
+    if (authService.currencyActual === "INR") {
+      return setIscurrency(currency.currencyINR.format(ammount))
+  }
+  if (authService.currencyActual === "GBP") {
+    return setIscurrency(currency.currencyGBP.format(ammount))
+}
   }, [ammount])
-
-
-
 
 
 
@@ -50,7 +52,7 @@ export default function MainAccount() {
       <div className=' w-4/5 h-3/4 bg-neutral-800  rounded-lg' >
         <h1 className='text-xl text-center text-neutral-600'><AccountBalanceWallet /> Main account</h1>
         <div className='h-2/3 flex justify-center items-center'>
-          <h1 className='text-5xl text-center text-neutral-600' >{loading ? <CircularProgress /> : isCurrency}</h1>
+          <h1 className='text-4xl text-center text-neutral-600' >{loading ? <CircularProgress /> : isCurrency}</h1>
         </div>
       </div>
     </div>

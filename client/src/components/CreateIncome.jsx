@@ -6,15 +6,12 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import CreditScoreIcon from '@mui/icons-material/CreditScore';
-import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-
 import { incomesService } from '../services';
 import MainAccount from './MainAccount';
 import Expenses from './Expenses';
 import Income from './Income';
 import Savings from './Savings';
-import { InputMask } from 'primereact/inputmask';
-import { IMaskInput } from 'react-imask';
+
 
 
 export default function CreateIncome() {
@@ -67,8 +64,8 @@ export default function CreateIncome() {
                     :
                     <div className='w-1/4 h-screen flex-col bg-neutral-900'>
                         <MainAccount />
-                        <Expenses />
                         <Income />
+                        <Expenses />                
                         <Savings />
                     </div>
                 }

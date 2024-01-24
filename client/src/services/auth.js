@@ -83,5 +83,36 @@ export class AuthService {
         }
     }
 
+    async profile() {
+        const res = await fetch(`${this.url}/getUsername`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                authorization: this.iToken
+            }
+        })
+        if (res.ok) {
+            const data = await res.json();
+            return data
+
+        }
+    }
+
+
+    async deleteAccount() {
+        const res = await fetch(`${this.url}/deleteAccount`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                authorization: this.iToken
+            },
+        })
+        if (res.ok) {
+            return await res.json();
+        }
+        return false
+    }
+
+
 
 }

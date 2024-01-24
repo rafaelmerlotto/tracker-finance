@@ -10,6 +10,7 @@ import logo from "../assets/images/logo-tracker-finance.png"
 import XIcon from '@mui/icons-material/X';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import { authService } from '../services';
 
 
 export default function Login() {
@@ -25,6 +26,7 @@ export default function Login() {
 
   useEffect(() => {
     if (token) {
+  
       localStorage.setItem('token', token)
       return navigate("/overview")
     }

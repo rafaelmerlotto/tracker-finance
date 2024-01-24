@@ -10,8 +10,8 @@ export default function AccountBalance() {
 
     <div className='w-1/3 h-screen flex-col '>
       <MainAccount />
-      <Expenses />
       <Income />
+      <Expenses />
       <Savings />
     </div>
   )

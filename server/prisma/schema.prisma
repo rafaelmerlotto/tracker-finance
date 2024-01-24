@@ -67,3 +67,5 @@ model Savings {
 
   @@unique([id, userId])
 }
+
+

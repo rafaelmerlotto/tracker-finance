@@ -18,7 +18,7 @@ export default function Logout() {
     return (
         <>
             <Button component="label" color='error' style={{ margin: "65px 10px" }}
-                size='large' onClick={handleClick} variant="contained" startIcon={<LogoutIcon />}> Log out </Button>
+                size='medium' onClick={handleClick} variant="contained" startIcon={<LogoutIcon />}> Log out </Button>
         </>
     )
 }

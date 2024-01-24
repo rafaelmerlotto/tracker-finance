@@ -74,8 +74,8 @@ export default function CreateExpenses() {
                     :
                     <div className='w-1/4 h-screen flex-col bg-neutral-900'>
                         <MainAccount />
+                         <Income />
                         <Expenses />
-                        <Income />
                         <Savings />
                     </div>
                 }
