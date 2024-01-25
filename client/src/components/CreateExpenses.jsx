@@ -35,13 +35,13 @@ export default function CreateExpenses() {
     return (
         <div className='flex' >
             <Sidebar />
-            <div className='w-4/5 h-screen flex items-center justify-center'>
-                <div className='w-3/4 h-screen flex items-center justify-center bg-neutral-900'>
+            <div className='w-4/5 h-screen flex items-center justify-center max-md:flex-col-reverse max-md:w-full max-md:h-screen'>
+                <div className='w-3/4 h-screen flex items-center justify-center bg-neutral-900 max-md:w-full'>
 
-                    <form onSubmit={handleSubmit(onSubmit)} class="bg-neutral-800 w-4/5 h-4/5 flex flex-col items-center justify-center gap-2.5 rounded-lg">
-                        <h1 className='text-5xl pb-10 text-neutral-700'>Expense</h1>
+                    <form onSubmit={handleSubmit(onSubmit)} class="bg-neutral-800 w-4/5 h-4/5 flex flex-col items-center justify-center gap-2.5 rounded-lg max-md:w-[95%]">
+                        <h1 className='text-5xl pb-10 text-neutral-700 max-md:text-2xl max-md:p-0'>Expense</h1>
                         <Select
-                            className='w-2/4 text-center bg-neutral-700 rounded-lg'
+                            className='w-2/4 text-center bg-neutral-700 rounded-lg max-md:h-[30px]'
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             {...register("name")}
@@ -58,21 +58,21 @@ export default function CreateExpenses() {
                             <MenuItem value={"Other"}><HelpOutlineIcon /> Other</MenuItem>
                         </Select>
 
-                        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                            <TextField className=' bg-neutral-700 rounded-lg text-neutral-200' id="filled-number" label="Ammount" type='number' {...register("ammount")} />
+                        <Box sx={{ display: 'flex',justifyContent:"center",  alignItems: 'flex-end' }}>
+                            <TextField className=' bg-neutral-700 rounded-lg text-neutral-200 max-md:w-[50%]' id="filled-number" label="Ammount" type='number' {...register("ammount")} />
                         </Box>
 
-                        <Button className='w-1/4 bg-neutral-700' variant="contained" type='submit' style={{ marginTop: 35 }}  >+ Add</Button>
+                        <Button className='w-1/4 bg-neutral-700 max-md:w-2/4' variant="contained" type='submit' style={{ marginTop: 35 }}  >+ Add</Button>
                     </form>
                 </div>
                 {loading ?
-                    <div className='h-screen w-1/4 flex items-center justify-center  bg-neutral-900'>
-                        <div className='w-full h-1/4 flex items-center justify-center'>
+                    <div className='h-screen w-1/4 flex items-center justify-center  bg-neutral-900 max-md:w-full max-md:h-1/4  max-md:items-center'>
+                        <div className='w-full h-1/4 flex items-center justify-center max-md:h-full'>
                             <CircularProgress />
                         </div>
                     </div>
                     :
-                    <div className='w-1/4 h-screen flex-col bg-neutral-900'>
+                    <div className='w-1/4 h-screen flex-col bg-neutral-900 max-md:w-full max-md:h-1/4 max-md:flex max-md:flex-wrap max-md:items-center'>
                         <MainAccount />
                          <Income />
                         <Expenses />

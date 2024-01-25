@@ -19,7 +19,7 @@ export default function Overview() {
 
 
   return (
-    <div className='flex '>
+    <div className='flex  '>
       <Sidebar />
         <Main />    
     </div>

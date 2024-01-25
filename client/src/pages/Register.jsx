@@ -29,20 +29,20 @@ export default function Register() {
   }
 
   return (
-    <div class="bg-neutral-800  w-full h-full flex items-center justify-center">
-      <div className='w-2/4 h-screen flex flex-col items-center justify-center'>
-        <img src={logo} alt="" />
-        <div className='mt-7 flex gap-2'>
-          <XIcon className='w-full' fontSize='large' sx={{ color: "#404040" }} />
-          <InstagramIcon className='w-full' fontSize='large' sx={{ color: "#404040" }} />
-          <FacebookIcon className='w-full' fontSize='large' sx={{ color: "#404040" }} />
+    <div class="bg-neutral-800  w-full h-full flex items-center justify-center max-md:flex-col max-md:h-screen">
+      <div className='w-2/4 h-screen flex flex-col items-center justify-center max-md:w-full max-md:h-1/4'>
+        <img src={logo} alt="" className='max-md:w-[100px]  max-md:pt-3'/>
+        <div className='mt-7 flex gap-2 max-md:pb-2'>
+          <XIcon className='w-full' fontSize='medium' sx={{ color: "#404040" }} />
+          <InstagramIcon className='w-full' fontSize='medium' sx={{ color: "#404040" }} />
+          <FacebookIcon className='w-full' fontSize='medium' sx={{ color: "#404040" }} />
         </div>
       </div>
-      <div class=" w-2/4 h-screen flex flex-col items-center justify-center bg-neutral-700">
-        <h1 className='text-[50px]  text-center text-neutral-900 '>Let's get started</h1>
+      <div class=" w-2/4 h-screen flex flex-col items-center justify-center bg-neutral-700  max-md:w-full max-md:h-3/4">
+        <h1 className='text-[50px]  text-center text-neutral-900  max-md:text-2xl max-md:mt-6'>Let's get started</h1>
        
         <form onSubmit={handleSubmit(onSubmit)} class="bg-neutral-700 w-2/3 h-auto flex flex-col items-center justify-center gap-2.5">
-        <p className=' m-7 text-lg text-neutral-900'>Already have an account? <Link to={"/"} className='text-1xl  font-bold'>Log in</Link> </p>  
+        <p className=' m-7 text-lg text-neutral-900 max-md:text-base max-md:text-center max-md:mb-0'>Already have an account? <Link to={"/"} className='text-1xl  font-bold'>Log in</Link> </p>  
           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
             <TextField id="input-with-sx" label="Email" type='email' variant="standard"  {...register("email")} />
@@ -56,7 +56,7 @@ export default function Register() {
             <TextField id="input-with-sx" label="Full name" type='text' variant="standard" {...register("fullName")} />
           </Box>
 
-          <Button variant="contained" type='submit' style={{ marginTop: 35 }} endIcon={<HowToRegIcon />}>Register</Button>
+          <Button variant="contained" type='submit'  style={{ marginTop: 35 }} endIcon={<HowToRegIcon />}>Register</Button>
         </form>
       </div>
     </div>

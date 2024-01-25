@@ -19,7 +19,7 @@ export default function Sidebar() {
     let navigate = useNavigate()
 
     return (
-        <div className='w-1/5 h-screen flex flex-col bg-neutral-800' >
+        <div className='w-1/5 h-screen flex flex-col bg-neutral-800 max-md:hidden' >
           <div className='w-full h-1/6 flex mb-3  justify-center items-center ' >
                 <Nav />
           </div>

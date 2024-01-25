@@ -89,3 +89,9 @@ body.active-modal {
   background: transparent;
   cursor: pointer;
 }
+
+@media not all and  (min-width: 768px) {
+  .modal-content{
+   min-width: 300px;
+  }
+}
