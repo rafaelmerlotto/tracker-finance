@@ -47,7 +47,7 @@ export default function Login() {
         <form onSubmit={handleSubmit(onSubmit)} class=" w-2/3 h-2/3 flex flex-col items-center justify-center gap-2.5 max-md:h-full">
           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-            <TextField id="input-with-sx" label="Email" type='email' variant="standard"  {...register("email")} />
+            <TextField id="input-with-sx"  label="Email" type='email' variant="standard"  {...register("email")} />
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <KeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />

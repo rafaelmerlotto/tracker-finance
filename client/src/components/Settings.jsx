@@ -88,26 +88,25 @@ export default function Settings() {
             <div className='flex  bg-neutral-900 '>
                 <Sidebar />
                 <div className='w-4/5 h-screen flex items-center justify-center max-md:w-full max-md:h-full '>
-                    <div className='w-3/4 h-3/4 flex  justify-center flex-col items-center bg-neutral-800 rounded-lg max-md:w-full max-md:h-screen max-md:rounded-none max-md:justify-normal'>
-                        <h1 className='h-auto text-5xl pb-10 text-neutral-700 max-md:text-[25px] max-md:p-4  '>Settings</h1>
-                        {/* <hr className='bg-blue-600  max-md:w-full' /> */}
-                        <div className='h-2/3 w-full flex max-md:flex-col '>
-
-                            <div className='w-1/2 h-full flex flex-col  items-center max-md:w-full '>
-                                <h1 className='text-[20px] mb-5 text-neutral-700 font-bold'>Profile</h1>
-                                <div className='w-full h-full flex flex-col items-center gap-4'>
-                                    <Avatar style={{ width: 50, height: 50 }} src="/broken-image.jpg" />
+                    <div className='w-3/4 h-3/4 flex  justify-center flex-col items-center bg-neutral-800 max-md:bg-neutral-900 rounded-lg max-md:w-full max-md:h-screen max-md:rounded-none max-md:justify-normal'>
+                        <h1 className='h-auto text-5xl pb-10 text-neutral-700 max-md:text-[25px] max-md:p-3  '>Settings</h1>
+            
+                        <div className='h-2/3 w-full flex max-md:flex-col max-md:items-center '>
+                            <div className='w-1/2 h-full flex flex-col  items-center max-md:w-[95%] max-md:h-full max-md:bg-neutral-800 max-md:p-3 max-md:rounded-lg'>
+                                <h1 className='text-[20px] mb-5 text-neutral-700 font-bold max-md:mb-3'>Profile</h1>
+                                <div className='w-full h-full flex flex-col items-center gap-2'>
+                                    <Avatar  style={{ width: 50, height: 50 }} src="/broken-image.jpg" />
                                     <div className='w-1/2 flex flex-col justify-center max-md:w-full'>
-                                        <p className=' text-center marker:text-1xl text-neutral-700 max-md:text-start max-md:pl-5 ' > <span className='font-bold'> Name:</span> {fullName}</p><br />
+                                        <p className=' text-center marker:text-1xl text-neutral-700 max-md:text-start  max-md:pl-5 ' > <span className='font-bold'> Name:</span> {fullName}</p><br />
                                         <p className=' text-center text-1xl text-neutral-700 max-md:text-start max-md:pl-5 ' ><span className='font-bold'> Email:</span> {email}</p>
                                     </div>
-                                    <Button className='  max-md:w-full] max-md:h-[25px] ' component="label" color='error' style={{ margin: "30px 10px", color: "#171717" }}
+                                    <Button className='  max-md:w-full] max-md:h-[20px] ' component="label" color='error' style={{ margin: "30px 10px", color: "#171717" }}
                                         onClick={toggleModal} size='small' variant="contained" startIcon={<DeleteForeverIcon />}> Delete account </Button>
 
                                 </div>
                             </div>
 
-                            <div className='w-1/2 flex justify-center max-md:w-full max-md:text max-md:mt-1'>
+                            <div className='w-1/2 flex justify-center max-md:text max-md:mt-1 max-md:w-[95%] max-md:h-full max-md:bg-neutral-800 max-md:p-3 max-md:rounded-lg'>
                                 <FormControl>
                                     <FormLabel className='text-[15px]' sx={{ fontSize: 20, color: "#404040", fontWeight: "bold" }} id="demo-radio-buttons-group-label">Select currency</FormLabel>
                                     <RadioGroup

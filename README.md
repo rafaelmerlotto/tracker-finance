@@ -1,13 +1,10 @@
-![picture project](https://i.imgur.com/EPD1a5V.png)
+![picture project](https://i.imgur.com/JP8WcNY.png)
 
 # Tracker finance
 App Tracker Finance is a application designed to empower users in managing and tracking their finances.
 
 ## Introduction
-* This application was developed with the aim for personal finance management.
-* Gives the user the possibility to save or delete income, expenses and savings with real-time updates.
-* There is a functionality that gives the use the possibility of changing into 5 different currencies.
-
+ This application was developed with the aim for personal finance management. Gives the user the possibility to save or delete income, expenses and savings with real-time updates. There is a functionality that gives the use the possibility of changing into 5 different currencies.
 
 
 ## technologie used
@@ -17,7 +14,6 @@ App Tracker Finance is a application designed to empower users in managing and t
 * ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 * ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 * ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-* ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 
 ### Frontend
 * ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)

@@ -58,7 +58,7 @@ export default function CreateExpenses() {
                             <MenuItem value={"Other"}><HelpOutlineIcon /> Other</MenuItem>
                         </Select>
 
-                        <Box sx={{ display: 'flex',justifyContent:"center",  alignItems: 'flex-end' }}>
+                        <Box sx={{ display: 'flex', justifyContent: "center", alignItems: 'flex-end' }}>
                             <TextField className=' bg-neutral-700 rounded-lg text-neutral-200 max-md:w-[50%]' id="filled-number" label="Ammount" type='number' {...register("ammount")} />
                         </Box>
 
@@ -66,7 +66,7 @@ export default function CreateExpenses() {
                     </form>
                 </div>
                 {loading ?
-                    <div className='h-screen w-1/4 flex items-center justify-center  bg-neutral-900 max-md:w-full max-md:h-1/4  max-md:items-center'>
+                    <div className='h-screen w-1/4 flex items-center justify-center bg-neutral-900 max-md:w-full max-md:h-1/4  max-md:items-center'>
                         <div className='w-full h-1/4 flex items-center justify-center max-md:h-full'>
                             <CircularProgress />
                         </div>
@@ -74,7 +74,7 @@ export default function CreateExpenses() {
                     :
                     <div className='w-1/4 h-screen flex-col bg-neutral-900 max-md:w-full max-md:h-1/4 max-md:flex max-md:flex-wrap max-md:items-center'>
                         <MainAccount />
-                         <Income />
+                        <Income />
                         <Expenses />
                         <Savings />
                     </div>
