@@ -15,7 +15,7 @@ export default function Nav() {
   return (
     < >
       <Avatar className='w-1/2' style={{width: 30, height:30}} src="/broken-image.jpg"/>
-       <p className='w-1/2 text-[18px] text-center text-neutral-600'>{username}</p>
+       <p className='w-1/2 text-[18px] text-center text-neutral-600 max-md:text-sm'>{username}</p>
     </>
   )
 }

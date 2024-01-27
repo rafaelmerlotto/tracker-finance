@@ -94,4 +94,13 @@ body.active-modal {
   .modal-content{
    min-width: 300px;
   }
+
+  #sidebar{
+  visibility: hidden;
 }
+
+}
+
+/* #sidebar{
+  visibility: visible;
+} */
