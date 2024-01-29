@@ -121,7 +121,7 @@ export default function ManagerSavings() {
                     <form onSubmit={handleSubmit(onSubmit)} class="bg-neutral-800 w-2/4 h-4/5 flex flex-col items-center justify-center gap-2.5 rounded-lg max-md:h-full max-md:w-[95%] max-md:p-2 max-md:mt-2">
                         <h1 className='text-5xl pb-10 text-neutral-700 max-md:text-2xl max-md:p-0'>Saving</h1>
                         <Box sx={{ display: 'flex', justifyContent:"center", alignItems: 'flex-end' }}>
-                            <TextField className=' bg-neutral-700 rounded-lg text-neutral-200 max-md:w-[50%] ' id="filled-number" label="Ammount" type='number'  {...register("ammount")} />
+                            <TextField className=' bg-neutral-700 rounded-lg text-neutral-200 max-md:w-[50%] ' id="filled-number" label="Ammount" type='number'  {...register("ammount", {required:true})} />
                         </Box>
                         <Button className='w-1/4 bg-neutral-700 max-md:w-2/4' variant="contained" type='submit' style={{ marginTop: 35 }} >+ Add</Button>
                     </form>

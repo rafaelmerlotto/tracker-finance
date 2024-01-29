@@ -44,7 +44,7 @@ export default function CreateExpenses() {
                             className='w-2/4 text-center bg-neutral-700 rounded-lg max-md:h-[30px]'
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            {...register("name")}
+                            {...register("name", {required:true})}
                             label="Select"
                         >
                             <MenuItem value={"Family"}> <FamilyRestroomIcon /> Family</MenuItem>

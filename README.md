@@ -7,7 +7,7 @@ App Tracker Finance is a application designed to empower users in managing and t
  This application was developed with the aim for personal finance management. Gives the user the possibility to save or delete income, expenses and savings with real-time updates. There is a functionality that gives the use the possibility of changing into 5 different currencies.
 
 
-## technologie used
+## technologie used for this project
 
 ### Backend
 * ![Nodejs](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)

@@ -47,11 +47,11 @@ export default function Login() {
         <form onSubmit={handleSubmit(onSubmit)} class=" w-2/3 h-2/3 flex flex-col items-center justify-center gap-2.5 max-md:h-full">
           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-            <TextField id="input-with-sx"  label="Email" type='email' variant="standard"  {...register("email")} />
+            <TextField id="input-with-sx"  label="Email" type='email' variant="standard"  {...register("email", {required:true})} />
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <KeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-            <TextField id="input-with-sx" label="Password" type='password' variant="standard" {...register("password")} />
+            <TextField id="input-with-sx" label="Password" type='password' variant="standard" {...register("password", {required:true})} />
           </Box>
           <Button variant="contained" className='max-md:h-[30px]' type='submit' style={{ marginTop: 35 }} endIcon={<LoginIcon />}>Login</Button>
           <Link className='mt-4 text-lg text-neutral-900 max-md:text-base' to={"/"} >Forgot password?</Link>

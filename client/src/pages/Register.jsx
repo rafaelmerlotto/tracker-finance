@@ -45,15 +45,15 @@ export default function Register() {
         <p className=' m-7 text-lg text-neutral-900 max-md:text-base max-md:text-center max-md:mb-0'>Already have an account? <Link to={"/"} className='text-1xl  font-bold'>Log in</Link> </p>  
           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-            <TextField id="input-with-sx" label="Email" type='email' variant="standard"  {...register("email")} />
+            <TextField id="input-with-sx" label="Email" type='email' variant="standard"  {...register("email", {required:true})} />
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <KeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-            <TextField id="input-with-sx" label="Password" type='password' variant="standard" {...register("password")} />
+            <TextField id="input-with-sx" label="Password" type='password' variant="standard" {...register("password", {required:true})} />
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <PersonIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-            <TextField id="input-with-sx" label="Full name" type='text' variant="standard" {...register("fullName")} />
+            <TextField id="input-with-sx" label="Full name" type='text' variant="standard" {...register("fullName", {required:true})} />
           </Box>
 
           <Button variant="contained" type='submit'  style={{ marginTop: 35 }} endIcon={<HowToRegIcon />}>Register</Button>

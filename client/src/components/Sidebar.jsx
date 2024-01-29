@@ -17,7 +17,6 @@ export default function Sidebar() {
 
     let navigate = useNavigate()
     const [toggleSidebar, setToggleSidebar] = useState()
-
     const sidebar = document.getElementById("sidebar")
     useEffect(() => {
         setToggleSidebar(sidebar)
