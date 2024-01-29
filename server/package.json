@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.ts",
-    "build": "npm build"
+    "build": "npm run build"
   },
   "author": "Rafael Merlotto",
   "license": "ISC",
