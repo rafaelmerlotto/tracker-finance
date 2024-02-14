@@ -17,7 +17,9 @@ server.use('/expenses', expenses)
 server.use('/savings', savings
 )
 
-
+server.get("/", async (req, res) => {
+   return res.status(200).send("Server is running 🚀")
+})
 
 const PORT = process.env.PORT || 4000;
 server.listen(PORT, () => {
