@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { authService, expensesService, incomesService } from '../services'
+import { expensesService, incomesService } from '../services'
 import { CircularProgress } from '@mui/material'
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import MoneyOffIcon from '@mui/icons-material/MoneyOff';
@@ -8,20 +8,18 @@ import MainAccount from './MainAccount';
 import Expenses from './Expenses';
 import Income from './Income';
 import Savings from './Savings';
-import { useCurrency } from '../context/currencyContext';
-import { authContext } from '../auth/auth';
+import { useSelector } from 'react-redux';
 
 
 
 export default function AllMoviments() {
 
-    const currency = useCurrency()
     const [allExpenses, setAllExpenses] = useState([])
     const [allIncomes, setAllIncomes] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [isExpensesLoading, setIsExpensesLoading] = useState(false)
     const [isIncomesLoading, setIsIncomesLoading] = useState(false)
-    const [isCurrency, setIscurrency] = useState()
+    const count = useSelector((state) => state.count.value)
 
 
     async function getAllExpenses() {
@@ -37,23 +35,7 @@ export default function AllMoviments() {
     useEffect(() => {
         getAllExpenses()
         getAllIncomes()
-
-        if (authService.currencyActual === "USD") {
-            return setIscurrency(currency.currencyUSD)
-        }
-        if (authService.currencyActual === "EUR") {
-            return setIscurrency(currency.currencyEUR)
-        }
-        if (authService.currencyActual === "BRL") {
-            return setIscurrency(currency.currencyBRL)
-        }
-        if (authService.currencyActual === "INR") {
-            return setIscurrency(currency.currencyINR)
-        }
-        if (authService.currencyActual === "GBP") {
-            return setIscurrency(currency.currencyGBP)
-        }
-    }, [isCurrency])
+    }, [])
 
     async function deleteExpense() {
         return await expensesService.deleteExpense(expensesService.iExpenseId);
@@ -89,7 +71,6 @@ export default function AllMoviments() {
 
 
 
-
     return (
       
             <div className='w-4/5 h-screen flex-row flex max-md:flex-col-reverse max-md:w-full max-md:h-screen'>
@@ -118,7 +99,7 @@ export default function AllMoviments() {
                                                     hour: "numeric",
                                                     minute: "numeric"
                                                 })}</td>
-                                            <td className='text-neutral-600 max-md:text-sm'>{isCurrency.format(e.ammount)}</td>
+                                            <td className='text-neutral-600 max-md:text-sm'>{count.format(e.ammount)}</td>
                                             <button type='submit' key={e.id} value={e.id} onClick={(e) => handleDeleteIncome(e.currentTarget.value)} >
                                                 <DeleteIcon className='text-neutral-600 cursor-pointer hover:text-red-500' /></button>
                                         </tr>
@@ -151,7 +132,7 @@ export default function AllMoviments() {
                                                     hour: "numeric",
                                                     minute: "numeric"
                                                 })}</td>
-                                            <td className='text-neutral-600 max-md:text-sm'>{isCurrency.format(e.ammount)}</td>
+                                            <td className='text-neutral-600 max-md:text-sm'>{count.format(e.ammount)}</td>
                                             <button type='submit' key={e.id} value={e.id} onClick={(e) => handleDeleteExpense(e.currentTarget.value)} >
                                                 <DeleteIcon className='text-neutral-600 cursor-pointer hover:text-red-500' /></button>
                                         </tr>

@@ -13,6 +13,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import { authService } from '../services';
 
 
+
 export default function Login() {
 
   let navigate = useNavigate()
@@ -26,7 +27,6 @@ export default function Login() {
 
   useEffect(() => {
     if (token) {
-
       localStorage.setItem('token', token)
       return navigate("/overview")
     }

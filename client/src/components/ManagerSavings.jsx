@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { authService, savingsService } from '../services';
+import { savingsService } from '../services';
 import { Box, Button, TextField, CircularProgress } from '@mui/material'
 import Sidebar from './Sidebar';
 import MainAccount from './MainAccount';
 import Expenses from './Expenses';
 import Income from './Income';
 import Savings from './Savings';
-import { useCurrency } from '../context/currencyContext';
 import SavingsIcon from '@mui/icons-material/Savings';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import { useSelector } from 'react-redux';
 
 export default function ManagerSavings() {
 
 
-    const currency = useCurrency()
     const { register, handleSubmit } = useForm();
     const [allSavings, setAllSavings] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [isSavingsLoading, setIsSavingsLoading] = useState(false)
-    const [isCurrency, setIscurrency] = useState()
+    const count = useSelector((state) => state.count.value)
 
 
     const onSubmit = async (data) => {
@@ -42,27 +40,13 @@ export default function ManagerSavings() {
 
     useEffect(() => {
         getAllSavings()
-
-        if (authService.currencyActual === "USD") {
-            return setIscurrency(currency.currencyUSD)
-        }
-        if (authService.currencyActual === "EUR") {
-            return setIscurrency(currency.currencyEUR)
-        }
-        if (authService.currencyActual === "BRL") {
-            return setIscurrency(currency.currencyBRL)
-        }
-        if (authService.currencyActual === "INR") {
-            return setIscurrency(currency.currencyINR)
-        }
-        if (authService.currencyActual === "GBP") {
-            return setIscurrency(currency.currencyGBP)
-        }
     })
+
 
     async function deleteSaving() {
         return await savingsService.deleteSaving(savingsService.iSavingId);
     }
+
 
     const handleDelete = (e) => {
         savingsService.iSavingId = e;
@@ -107,7 +91,7 @@ export default function ManagerSavings() {
                                                         hour: "numeric",
                                                         minute: "numeric"
                                                     })}</td>
-                                                <td className='text-neutral-600 max-md:text-sm'>{isCurrency.format(e.ammount)}</td>
+                                                <td className='text-neutral-600 max-md:text-sm'>{count.format(e.ammount)}</td>
                                                 <button type='submit' key={e.id} value={e.id} onClick={(e) => handleDelete(e.currentTarget.value)} >
                                                     <DeleteIcon className='text-neutral-600 cursor-pointer hover:text-red-500' /></button>
                                             </tr>

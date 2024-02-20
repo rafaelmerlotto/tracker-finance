@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import TransformIcon from '@mui/icons-material/Transform';
-import { authService, incomesService } from '../services';
-import { useCurrency } from '../context/currencyContext';
+import { incomesService } from '../services';
+import { useSelector } from 'react-redux';
 
 
 
 export default function RecentIncomes() {
 
-    const currency = useCurrency();
     const [incomes, setIncomes] = useState([]);
-    const [isCurrency, setIscurrency] = useState()
+    const count = useSelector((state) => state.count.value)
     
 
     useEffect(() => {
@@ -17,24 +16,8 @@ export default function RecentIncomes() {
             const res = await incomesService.incomes();
             return setIncomes(res);
         }
-        getIncomes();
-       
-        if (authService.currencyActual === "USD") {
-            return setIscurrency(currency.currencyUSD)
-        }
-        if (authService.currencyActual === "EUR") {
-            return setIscurrency(currency.currencyEUR)
-        }
-        if (authService.currencyActual === "BRL") {
-            return setIscurrency(currency.currencyBRL)
-        }
-        if (authService.currencyActual === "INR") {
-            return setIscurrency(currency.currencyINR)
-        }
-        if (authService.currencyActual === "GBP") {
-            return setIscurrency(currency.currencyGBP)
-        }
-    }, [isCurrency])
+        getIncomes();  
+    }, [])
 
 
 
@@ -60,7 +43,7 @@ export default function RecentIncomes() {
                                     minute: "numeric",
 
                                 })}</td>
-                                <td className='text-neutral-600 max-md:text-sm'>{isCurrency.format(e.ammount)} </td>
+                                <td className='text-neutral-600 max-md:text-sm'>{count.format(e.ammount)} </td>
                         </tr>
                     ))}
                 </table>
