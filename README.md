@@ -4,7 +4,7 @@
 App Tracker Finance is a application designed to empower users in managing and tracking their finances.
 
 ### Introduction
- This application was developed with the aim for personal finance management. Gives the user the possibility to save or delete income, expenses and savings with real-time updates. There is a functionality that gives the use the possibility of changing into 5 different currencies.
+This application was developed with the aim of personal finance management. It gives the user the ability to save or delete income, expenses, and savings with real-time updates. Additionally, there is a functionality that allows the user to switch between five different currencies.
 
 ### For Installation follow these steps
 1. Clone the repository using the following command:
@@ -38,6 +38,7 @@ npm start
 
 #### Frontend
 * ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+* ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 * ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 * ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 

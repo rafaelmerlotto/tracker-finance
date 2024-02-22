@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MainAccount from './MainAccount'
 import Expenses from './Expenses'
 import Income from './Income'
 import Savings from './Savings'
 import RecentIncomes from './RecentIncomes'
 import RecentExpenses from './RecentExpenses'
+import { authService } from '../services'
+
+
 
 
 export default function Main() {
 
-    
     return (
         <div className='w-4/5 h-screen flex  bg-neutral-900 max-md:flex-col-reverse max-md:w-full max-md:h-screen' >
             <div className='w-3/4 h-screen max-md:w-full max'>

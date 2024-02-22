@@ -1,14 +1,14 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import AllMoviments from './AllMoviments';
+import AllMovements from './AllMovements';
 
 
 
-export default function Moviments() {
+export default function Movements() {
     return (
         <div className='flex'>
             <Sidebar />
-            <AllMoviments />
+            <AllMovements />
         </div>
 
     )

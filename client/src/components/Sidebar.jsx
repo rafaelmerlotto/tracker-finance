@@ -52,7 +52,7 @@ export default function Sidebar() {
                     <Button component="label" className='max-md:h-[25px]' style={{ margin: 10 }} size='medium' variant="contained" onClick={() => { return navigate("/createIncome"); }} startIcon={<CurrencyExchangeIcon />}> Incomes </Button>
                     <Button component="label" className='max-md:h-[25px]' style={{ margin: 10 }} size='medium' variant="contained" onClick={() => { return navigate("/createExpense"); }} startIcon={<MoneyOffIcon />}> Expenses </Button>
                     <Button component="label" className='max-md:h-[25px]' style={{ margin: 10 }} size='medium' variant="contained" onClick={() => { return navigate("/managerSavings"); }} startIcon={<Savings />}> Savings </Button>
-                    <Button component="label" className='max-md:h-[25px]' style={{ margin: 10 }} size='medium' variant="contained" onClick={() => { return navigate("/moviments"); }} startIcon={<Transform />}> Moviments </Button>
+                    <Button component="label" className='max-md:h-[25px]' style={{ margin: 10 }} size='medium' variant="contained" onClick={() => { return navigate("/movements"); }} startIcon={<Transform />}> Moviments </Button>
                     <Button component="label" className='max-md:h-[25px]' style={{ margin: 10 }} size='medium' variant="contained" onClick={() => { return navigate("/settings"); }} startIcon={<SettingsIcon />}> Settings </Button>
                     <Logout />
                     <div className='w-full h-1/6 flex justify-center  '>

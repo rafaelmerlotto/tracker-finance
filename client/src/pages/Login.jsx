@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Box, Button, TextField } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { Box, Button, CircularProgress, TextField } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email';
 import KeyIcon from '@mui/icons-material/Key';
 import LoginIcon from '@mui/icons-material/Login';
@@ -14,14 +14,23 @@ import { authService } from '../services';
 
 
 
+
 export default function Login() {
+
+  const [loading, setLoading] = useState(false);
+
 
   let navigate = useNavigate()
   const { token, login } = useAuth()
   const { register, handleSubmit } = useForm()
 
   const onSubmit = async (data) => {
-    const res = await login(data)
+    setLoading(true)
+  const res = await login(data)
+    setTimeout( async()  => {
+      setLoading(false)
+    
+    }, 5000)
     return res
   }
 
@@ -37,7 +46,7 @@ export default function Login() {
       <div className='w-2/4 h-screen flex flex-col items-center justify-center max-md:w-full max-md:h-1/4'>
         <img src={logo} alt="" className='max-md:w-[100px]  max-md:pt-3' />
         <div className='mt-7 flex gap-2 max-md:pb-2'>
-          <XIcon className='w-full' fontSize='medium'  sx={{ color: "#404040" }} />
+          <XIcon className='w-full' fontSize='medium' sx={{ color: "#404040" }} />
           <InstagramIcon className='w-full' fontSize='medium' sx={{ color: "#404040" }} />
           <FacebookIcon className='w-full' fontSize='medium' sx={{ color: "#404040" }} />
         </div>
@@ -47,14 +56,18 @@ export default function Login() {
         <form onSubmit={handleSubmit(onSubmit)} class=" w-2/3 h-2/3 flex flex-col items-center justify-center gap-2.5 max-md:h-full">
           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-            <TextField id="input-with-sx"  label="Email" type='email' variant="standard"  {...register("email", {required:true})} />
+            <TextField id="input-with-sx" label="Email" type='email' variant="standard"  {...register("email", { required: true })} />
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
             <KeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-            <TextField id="input-with-sx" label="Password" type='password' variant="standard" {...register("password", {required:true})} />
+            <TextField id="input-with-sx" label="Password" type='password' variant="standard" {...register("password", { required: true })} />
           </Box>
-          <Button variant="contained" className='max-md:h-[30px]' type='submit' style={{ marginTop: 35 }} endIcon={<LoginIcon />}>Login</Button>
-          <Link className='mt-4 text-lg text-neutral-900 max-md:text-base' to={"/"} >Forgot password?</Link>
+          {loading ?
+           <Button variant="contained" className='max-md:h-[30px]' type='submit' style={{ marginTop: 35, paddingLeft:"24.7px"}} endIcon={<LoginIcon />}><CircularProgress  color="inherit" size={24} />&nbsp; &nbsp; </Button>
+             :
+            <Button variant="contained" className='max-md:h-[30px]' type='submit' style={{ marginTop: 35 }} endIcon={<LoginIcon />}>Login</Button>
+          }
+          {/* <Link className='mt-4 text-lg text-neutral-900 max-md:text-base' to={"/"} >Forgot password?</Link> */}
           <p className=' mt-12 text-lg text-neutral-900 max-md:text-base'>Not registred? <Link to={"/register"} className='text-1xl  font-bold'>Do it here</Link> </p>
         </form>
 

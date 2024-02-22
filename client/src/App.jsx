@@ -5,7 +5,7 @@ import Register from "./pages/Register";
 import { useAuth } from "./auth/auth";
 import CreateExpenses from "./components/CreateExpenses";
 import CreateIncome from "./components/CreateIncome";
-import Moviments from "./components/Moviments";
+import Movements from "./components/Movements";
 import ManagerSavings from "./components/ManagerSavings";
 import Settings from "./components/Settings";
 
@@ -20,7 +20,7 @@ export default function App() {
           <Route path="/createExpense" element={<PrivateRoute><CreateExpenses/> </PrivateRoute>}/> 
           <Route path="/createIncome" element={<PrivateRoute><CreateIncome/> </PrivateRoute>}/> 
           <Route path="/managerSavings" element={<PrivateRoute><ManagerSavings/> </PrivateRoute>}/> 
-          <Route path="/moviments" element={<PrivateRoute><Moviments/> </PrivateRoute>}/> 
+          <Route path="/movements" element={<PrivateRoute><Movements/> </PrivateRoute>}/> 
           <Route path="/settings" element={<PrivateRoute><Settings/> </PrivateRoute>}/> 
           <Route path="/" element={<Login/>} /> 
           <Route path="/register" element={<Register/>} /> 

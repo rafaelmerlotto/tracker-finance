@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 
 
 
-export default function AllMoviments() {
+export default function AllMovements() {
 
     const [allExpenses, setAllExpenses] = useState([])
     const [allIncomes, setAllIncomes] = useState([])
@@ -76,9 +76,9 @@ export default function AllMoviments() {
             <div className='w-4/5 h-screen flex-row flex max-md:flex-col-reverse max-md:w-full max-md:h-screen'>
                 <div className='w-3/4 h-full flex justify-center items-center gap-5 bg-neutral-900 max-md:w-full max-md:flex-col max-md:h-[75%]'>
                     {isIncomesLoading ?
-                        <div className=' w-2/4 ml-5 h-[95%] flex items-center justify-center bg-neutral-800 rounded-lg overflow-y-auto overflow-x-hidden'>
-                            < CircularProgress />
-                        </div>
+                          <div className='w-2/4 ml-5 h-[95%] bg-neutral-800 rounded-lg flex items-center justify-center overflow-y-auto overflow-x-hidden max-md:h-full max-md:w-[95%] max-md:p-2 max-md:m-0 max-md:mb-2'>
+                          < CircularProgress />
+                      </div>
                         :
                         <div className=' w-2/4 ml-5 h-[95%] bg-neutral-800 rounded-lg overflow-y-auto overflow-x-hidden max-md:h-full max-md:w-[95%] max-md:p-2 max-md:m-0 max-md:mt-2'>
                             <h1 className='text-xl text-center text-neutral-600 max-md:text-base'><CurrencyExchangeIcon /> List of Incomes</h1>
@@ -144,9 +144,11 @@ export default function AllMoviments() {
                 </div>
                 <React.Fragment>
                     {isLoading ?
-                        <div className='w-1/4 h-full bg-neutral-900 flex justify-center items-center'>
-                            < CircularProgress />
-                        </div>
+                         <div className='h-screen w-1/4 flex items-center justify-center  bg-neutral-900 max-md:w-full max-md:h-1/4 max-md:flex max-md:flex-wrap max-md:items-center'>
+                         <div className='w-full h-1/4 flex items-center justify-center'>
+                             <CircularProgress />
+                         </div>
+                     </div>
                         :
                         <div className='w-1/4 h-full flex flex-col justify-center items-center bg-neutral-900  max-md:w-full max-md:h-[25%] max-md:flex max-md:flex-wrap max-md:items-center'>
                             <MainAccount />
