@@ -19,7 +19,7 @@ server.use('/savings', savings
 )
 
 const _dirname = path.dirname("")
-const buildPath = path.join(_dirname  , "../client/build");
+const buildPath = path.join(_dirname  , "../client/build/index.html");
 
 server.use(express.static(buildPath))
 
