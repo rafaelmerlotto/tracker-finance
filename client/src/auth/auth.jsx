@@ -14,12 +14,12 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         const res = await authService.login(email, password);
         if (!res) {
-           return false
+            return false
         }
         return setToken(authService.iToken)
     }
     const logout = () => setToken(undefined);
-    return <authContext.Provider value={{login,logout , token,  }}>{children}</authContext.Provider>;
+    return <authContext.Provider value={{ login, logout, token, }}>{children}</authContext.Provider>;
 }
 
 export const useAuth = () => {

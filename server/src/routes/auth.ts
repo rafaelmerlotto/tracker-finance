@@ -92,9 +92,9 @@ auth.post('/ammount', async (req: Request, res: Response) => {
         data: {
             mainAccount: mainAccount
         },
-        include:{
+        include: {
             expenses: true,
-            incomes:true,
+            incomes: true,
             savings: true
         }
     })
@@ -136,49 +136,49 @@ auth.post('/getUsername', async (req: Request, res: Response) => {
 
 
 auth.delete('/deleteAccount', async (req: Request, res: Response) => {
-        const accessToken = req.headers.authorization
-        const payload: JwtPayload | null = checkJwt(accessToken!);
-        if (!payload) {
-            return res.status(401).send({ msg: "Token not valid", valid: false });
+    const accessToken = req.headers.authorization
+    const payload: JwtPayload | null = checkJwt(accessToken!);
+    if (!payload) {
+        return res.status(401).send({ msg: "Token not valid", valid: false });
+    }
+    const userId: string = payload.userId;
+    const user: User | null = await prisma.user.findUnique({
+        where: {
+            id: userId
         }
-        const userId: string = payload.userId;
-        const user: User | null = await prisma.user.findUnique({
-            where: {
-                id: userId
-            }
-        });
-        if (!user) {
-            return res.status(401).send({ msg: "User not valid", valid: false });
+    });
+    if (!user) {
+        return res.status(401).send({ msg: "User not valid", valid: false });
+    }
+    await prisma.jwtKey.deleteMany({
+        where: {
+            userId: user.id
         }
-        await prisma.jwtKey.deleteMany({
-            where: {
-                userId: user.id
-            }
-        })
-        await prisma.incomes.deleteMany({
-            where: {
-                userId: user.id
-            }
-        })
-        await prisma.expenses.deleteMany({
-            where: {
-                userId: user.id
-            }
-        })
-        await prisma.savings.deleteMany({
-            where: {
-                userId: user.id
-            }
-        })
-        const deleteUser: User | null = await prisma.user.delete({
-            where: {
-                id: user.id
-            }
-        })
-        if (!deleteUser) {
-            return res.status(500).send({ msg: "Internal server error.", valid: false });
-        }
-        return res.status(200).send({ msg: "Account deleted correctly.", valid: true });
     })
+    await prisma.incomes.deleteMany({
+        where: {
+            userId: user.id
+        }
+    })
+    await prisma.expenses.deleteMany({
+        where: {
+            userId: user.id
+        }
+    })
+    await prisma.savings.deleteMany({
+        where: {
+            userId: user.id
+        }
+    })
+    const deleteUser: User | null = await prisma.user.delete({
+        where: {
+            id: user.id
+        }
+    })
+    if (!deleteUser) {
+        return res.status(500).send({ msg: "Internal server error.", valid: false });
+    }
+    return res.status(200).send({ msg: "Account deleted correctly.", valid: true });
+})
 
 export { auth }
