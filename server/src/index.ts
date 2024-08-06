@@ -18,23 +18,24 @@ server.use('/expenses', expenses)
 server.use('/savings', savings
 )
 
-const _dirname = path.dirname("")
-const buildPath = path.join(_dirname  , "../client/build/index.html");
+// const _dirname = path.dirname("")
+// const buildPath = path.join(_dirname  , "../client/build");
 
-server.use(express.static(buildPath))
 
-server.get("/", (req, res) => {
-    res.sendFile(
-        path.join(__dirname, "../client/build/index.html"),
-        function (err) {
-            res.status(500).send(err);
-        }
-    )
-})
+// server.use(express.static(buildPath))
 
-// server.get("/", async (req, res) => {
-//     return res.status(200).send("Server is running 🚀")
+// server.get("/", (req, res) => {
+//     res.sendFile(
+//         path.join(__dirname, "../client/build/index.html"),
+//         function (err) {
+//             res.status(500).send(err);
+//         }
+//     )
 // })
+
+server.get("/", async (req, res) => {
+    return res.status(200).send("Server is running 🚀")
+})
 
 const PORT = process.env.PORT || 4000;
 server.listen(PORT, () => {
