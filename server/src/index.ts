@@ -10,6 +10,8 @@ import path from 'path';
 dotenv.config();
 const server = express();
 
+
+
 server.use(cors())
 server.use(express.json())
 server.use('/auth', auth)
@@ -32,6 +34,14 @@ server.use('/savings', savings
 //         }
 //     )
 // })
+
+
+server.use((req,res,next)=>{
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+    res.setHeader('Access-Control-Allow-Methods','Content-Type');
+    next(); 
+})
 
 server.get("/", async (req, res) => {
     return res.status(200).send("Server is running 🚀")
