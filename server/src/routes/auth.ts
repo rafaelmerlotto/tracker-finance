@@ -1,7 +1,7 @@
 import express, { Request, Response, Router } from 'express'
 import { JwtKey, User } from '@prisma/client'
 import { getToken } from '../utils/key';
-import bcrypt, { compareSync } from 'bcrypt'
+import bcrypt, { compareSync } from 'bcryptjs'
 import dotenv from "dotenv"
 import { prisma } from '../utils/prisma';
 import { JwtPayload } from 'jsonwebtoken';

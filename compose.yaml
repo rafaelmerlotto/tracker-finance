@@ -1,0 +1,38 @@
+
+services:
+
+  server:
+    platform: linux/arm64
+    build:
+      context: ./server
+      dockerfile: Dockerfile   
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./server:/src
+    depends_on:
+      - mongo
+
+
+  client:
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"  
+    volumes:
+      - ./client:/src
+    depends_on:
+      - server
+
+  mongo:
+    image: mongo:6
+    platform: linux/arm64
+    ports:
+      - "27017:27017"
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    volumes:
+      - mongo-data:/data/db
+
+
+volumes:
+  mongo-data:
